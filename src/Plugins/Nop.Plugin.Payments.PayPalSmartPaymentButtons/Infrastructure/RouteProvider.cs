@@ -13,13 +13,13 @@ namespace Nop.Plugin.Payments.PayPalSmartPaymentButtons.Infrastructure
         /// <summary>
         /// Register routes
         /// </summary>
-        /// <param name="routeBuilder">Route builder</param>
-        public void RegisterRoutes(IRouteBuilder routeBuilder)
+        /// <param name="endpointRouteBuilder">Route builder</param>
+        public void RegisterRoutes(IEndpointRouteBuilder endpointRouteBuilder)
         {
-            routeBuilder.MapRoute(Defaults.ConfigurationRouteName, "Plugins/PayPalSmartPaymentButtons/Configure",
+            endpointRouteBuilder.MapControllerRoute(Defaults.ConfigurationRouteName, "Plugins/PayPalSmartPaymentButtons/Configure",
                 new { controller = "PayPalSmartPaymentButtons", action = "Configure", area = AreaNames.Admin });
 
-            routeBuilder.MapRoute(Defaults.WebhookRouteName, "Plugins/PayPalSmartPaymentButtons/Webhook",
+            endpointRouteBuilder.MapControllerRoute(Defaults.WebhookRouteName, "Plugins/PayPalSmartPaymentButtons/Webhook",
                 new { controller = "PayPalSmartPaymentButtonsWebhook", action = "WebhookHandler" });
         }
 
