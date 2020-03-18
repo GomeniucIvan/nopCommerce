@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Nop.Core;
@@ -59,7 +60,8 @@ namespace Nop.Plugin.Payments.PayPalSmartPaymentButtons.Components
                 return View("~/Plugins/Payments.PayPalSmartPaymentButtons/Views/Buttons.cshtml", (widgetZone, model.ProductId));
 
             if (widgetZone.Equals(PublicWidgetZones.OrderSummaryContentAfter) &&
-                RouteData.Routers.OfType<INamedRouter>().Any(route => route.Name.Equals(Defaults.ShoppingCartRouteName)))
+                HttpContext.GetEndpoint()?.Metadata.GetMetadata<RouteNameMetadata>() is RouteNameMetadata routeNameMetadata &&
+                routeNameMetadata.RouteName.Equals(Defaults.ShoppingCartRouteName))
             {
                 return View("~/Plugins/Payments.PayPalSmartPaymentButtons/Views/Buttons.cshtml", (widgetZone, 0));
             }
