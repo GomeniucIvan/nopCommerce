@@ -46,5 +46,10 @@ namespace Nop.Services.Authentication
         /// Gets a key to store external authentication errors to session
         /// </summary>
         public static string ExternalAuthenticationErrorsSessionKey => "nop.externalauth.errors";
+
+        /// <summary>
+        /// Gets a jwt key
+        /// </summary>
+        public static string JwtSecurityTokenKey => "oafopuukuoabsqbxnfllmtvwxrbimfzj";
     }
 }

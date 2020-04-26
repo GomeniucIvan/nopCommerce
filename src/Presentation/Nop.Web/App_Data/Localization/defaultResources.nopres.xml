@@ -18366,4 +18366,116 @@
   <LocaleResource Name="Wishlist.YourWishlistURL">
     <Value>Your wishlist URL for sharing</Value>
   </LocaleResource>
+
+  <LocaleResource Name="Mobile.Products.Added">
+    <Value>Product added successfully</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Home">
+    <Value>Home</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Catalog">
+    <Value>Catalog</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Account">
+    <Value>Account</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Account">
+    <Value>Account</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Wishlist">
+    <Value>Wishlist</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Cart">
+    <Value>Cart</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Reset">
+    <Value>Reset</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Filter">
+    <Value>Filter</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Filter">
+    <Value>Filter</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Products.Specs">
+    <Value>Products specifications</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Products.Description">
+    <Value>Description</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.ShoppingCart.AddToCart">
+    <Value>Add to cart</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.ShoppingCart.AddToWishlist">
+    <Value>Add to wishlist</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.ShoppingCart">
+    <Value>Shopping Cart</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Login">
+    <Value>Login</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Register">
+    <Value>Register</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.CustomerService">
+    <Value>Customer service</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.News">
+    <Value>News</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Blog">
+    <Value>Blog</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Languages">
+    <Value>Languages</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Products.RecentlyViewedProducts">
+    <Value>Recently viewed products</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Logout">
+    <Value>Logout</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.RememberMe">
+    <Value>Remember me</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Fields.FirstName">
+    <Value>First name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Fields.LastName">
+    <Value>Last name</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Fields.Email">
+    <Value>Email</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Fields.Company">
+    <Value>Company</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Fields.Newsletter">
+    <Value>Newsletter</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Fields.Password">
+    <Value>Password</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Fields.ConfirmPassword">
+    <Value>Confirm password</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Categories">
+    <Value>Categories</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Categories">
+    <Value>Categories</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Products">
+    <Value>Products</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Bestsellers">
+    <Value>Bestsellers</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Bestsellers">
+    <Value>Bestsellers</Value>
+  </LocaleResource>
+  <LocaleResource Name="Mobile.Preview">
+    <Value>Preview</Value>
+  </LocaleResource>
 </Language>
