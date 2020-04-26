@@ -9,6 +9,7 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.News;
+using Nop.Services.Caching;
 using Nop.Services.Catalog;
 using Nop.Services.Orders;
 using Nop.Services.Security;
@@ -32,12 +33,13 @@ namespace Nop.Web.Controllers.api
         private readonly ICatalogModelFactory _catalogModelFactory;
         private readonly IProductService _productService;
         private readonly IProductModelFactory _productModelFactory;
-        private readonly ICacheManager _cacheManager;
+        private readonly IStaticCacheManager _staticCacheManager;
         private readonly IStoreContext _storeContext;
         private readonly IOrderReportService _orderReportService;
         private readonly IAclService _aclService;
         private readonly IStoreMappingService _storeMappingService;
         private readonly INewsModelFactory _newsModelFactory;
+        private readonly ICacheKeyService _cacheKeyService;
 
         #endregion
 
@@ -49,12 +51,13 @@ namespace Nop.Web.Controllers.api
             ICatalogModelFactory catalogModelFactory,
             IProductService productService,
             IProductModelFactory productModelFactory,
-            ICacheManager cacheManager,
+            IStaticCacheManager staticCacheManager,
             IStoreContext storeContext,
             IOrderReportService orderReportService,
             IAclService aclService,
             IStoreMappingService storeMappingService,
-            INewsModelFactory newsModelFactory
+            INewsModelFactory newsModelFactory,
+            ICacheKeyService cacheKeyService
             )
         {
             _catalogSettings = catalogSettings;
@@ -62,12 +65,13 @@ namespace Nop.Web.Controllers.api
             _catalogModelFactory = catalogModelFactory;
             _productService = productService;
             _productModelFactory = productModelFactory;
-            _cacheManager = cacheManager;
+            _staticCacheManager = staticCacheManager;
             _storeContext = storeContext;
             _orderReportService = orderReportService;
             _aclService = aclService;
             _storeMappingService = storeMappingService;
             _newsModelFactory = newsModelFactory;
+            _cacheKeyService = cacheKeyService;
         }
 
         #endregion
@@ -122,12 +126,12 @@ namespace Nop.Web.Controllers.api
                 if (!_catalogSettings.ShowBestsellersOnHomepage || _catalogSettings.NumberOfBestsellersOnHomepage == 0)
                     return result;
 
-                //load and cache report
-                var report = _cacheManager.Get(NopModelCacheDefaults.HomepageBestsellersIdsKey.FillCacheKey(_storeContext.CurrentStore.Id),
-                    () => _orderReportService.BestSellersReport(
-                            storeId: _storeContext.CurrentStore.Id,
-                            pageSize: _catalogSettings.NumberOfBestsellersOnHomepage)
-                        .ToList());
+            //load and cache report
+            var report = _staticCacheManager.Get(_cacheKeyService.PrepareKeyForDefaultCache(NopModelCacheDefaults.HomepageBestsellersIdsKey, _storeContext.CurrentStore),
+                () => _orderReportService.BestSellersReport(
+                        storeId: _storeContext.CurrentStore.Id,
+                        pageSize: _catalogSettings.NumberOfBestsellersOnHomepage)
+                    .ToList());
 
                 //load products
                 var products = _productService.GetProductsByIds(report.Select(x => x.ProductId).ToArray());
