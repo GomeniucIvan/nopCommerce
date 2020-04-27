@@ -6830,6 +6830,15 @@ namespace Nop.Services.Installation
                 DefaultCacheTime = NopCachingDefaults.CacheTime,
                 BundledFilesCacheTime = 120
             });
+
+            settingService.SaveSetting(new MobileSettings
+            {
+                SliderDelay = 3000,
+                DarkThemeAsDefault = false,
+                BaseColor = "#4ab2f1",
+                ShowPresentationOnFirstLoad = true,
+                CurrentLanguageVersion = 1
+            });
         }
 
         protected virtual void InstallCheckoutAttributes()
