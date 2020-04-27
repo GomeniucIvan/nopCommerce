@@ -19,6 +19,7 @@ using Nop.Core.Domain.Polls;
 using Nop.Core.Domain.Security;
 using Nop.Core.Domain.Seo;
 using Nop.Core.Domain.Shipping;
+using Nop.Core.Domain.Sliders;
 using Nop.Core.Domain.Stores;
 using Nop.Core.Domain.Tasks;
 using Nop.Core.Domain.Tax;
@@ -209,6 +210,8 @@ namespace Nop.Data.Migrations
             _migrationManager.BuildTable<VendorAttribute>(Create);
             _migrationManager.BuildTable<VendorAttributeValue>(Create);
             _migrationManager.BuildTable<VendorNote>(Create);
+
+            _migrationManager.BuildTable<Slider>(Create);
         }
     }
 }
