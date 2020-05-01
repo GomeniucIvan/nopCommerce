@@ -6,7 +6,10 @@ using Nop.Services.Messages;
 using Nop.Services.Sliders;
 using Nop.Web.Areas.Admin.Factories;
 using Nop.Web.Areas.Admin.Infrastructure.Mapper.Extensions;
+using Nop.Web.Areas.Admin.Models.Catalog;
+using Nop.Web.Areas.Admin.Models.News;
 using Nop.Web.Areas.Admin.Models.Sliders;
+using Nop.Web.Areas.Admin.Models.Topics;
 using Nop.Web.Framework.Mvc.Filters;
 
 namespace Nop.Web.Areas.Admin.Controllers
@@ -20,6 +23,10 @@ namespace Nop.Web.Areas.Admin.Controllers
         private readonly ILocalizationService _localizationService;
         private readonly INotificationService _notificationService;
         private readonly ILocalizedEntityService _localizedEntityService;
+        private readonly IProductModelFactory _productModelFactory;
+        private readonly ICategoryModelFactory _categoryModelFactory;
+        private readonly ITopicModelFactory _topicModelFactory;
+        private readonly INewsModelFactory _newsModelFactory;
 
         #endregion
 
@@ -30,13 +37,21 @@ namespace Nop.Web.Areas.Admin.Controllers
             ISliderService sliderService,
             ILocalizationService localizationService,
             INotificationService notificationService,
-            ILocalizedEntityService localizedEntityService)
+            ILocalizedEntityService localizedEntityService,
+            IProductModelFactory productModelFactory,
+            ICategoryModelFactory categoryModelFactory,
+            ITopicModelFactory topicModelFactory,
+            INewsModelFactory newsModelFactory)
         {
             _sliderModelFactory = sliderModelFactory;
             _sliderService = sliderService;
             _localizationService = localizationService;
             _notificationService = notificationService;
             _localizedEntityService = localizedEntityService;
+            _productModelFactory = productModelFactory;
+            _categoryModelFactory = categoryModelFactory;
+            _topicModelFactory = topicModelFactory;
+            _newsModelFactory = newsModelFactory;
         }
 
         #endregion
@@ -100,7 +115,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 //locales
                 UpdateLocales(slider, model);
 
-                _notificationService.SuccessNotification(_localizationService.GetResource("Admin.Slider.Added"));
+                _notificationService.SuccessNotification(_localizationService.GetResource("Admin.ContentManagement.Sliders.Added"));
 
                 if (!continueEditing)
                     return RedirectToAction("List");
@@ -144,7 +159,7 @@ namespace Nop.Web.Areas.Admin.Controllers
                 //locales
                 UpdateLocales(slider, model);
 
-                _notificationService.SuccessNotification(_localizationService.GetResource("Admin.Slider.Updated"));
+                _notificationService.SuccessNotification(_localizationService.GetResource("Admin.ContentManagement.Sliders.Updated"));
 
                 if (!continueEditing)
                     return RedirectToAction("List");
@@ -169,9 +184,29 @@ namespace Nop.Web.Areas.Admin.Controllers
 
             _sliderService.DeleteSlider(poll);
 
-            _notificationService.SuccessNotification(_localizationService.GetResource("Admin.Slider.Deleted"));
+            _notificationService.SuccessNotification(_localizationService.GetResource("Admin.ContentManagement.Sliders.Deleted"));
 
             return RedirectToAction("List");
+        }
+
+        public virtual IActionResult GetItemsByEntityType(SliderEntityTypeEnum entityType)
+        {
+            if (entityType == SliderEntityTypeEnum.None)
+                return Json("");
+
+            if (entityType == SliderEntityTypeEnum.Product)
+                return Json(_productModelFactory.PrepareProductListModel(new ProductSearchModel()).Data);
+
+            if (entityType == SliderEntityTypeEnum.Category)
+                return Json(_categoryModelFactory.PrepareCategoryListModel(new CategorySearchModel()).Data);
+
+            if (entityType == SliderEntityTypeEnum.Topic)
+                return Json(_topicModelFactory.PrepareTopicListModel(new TopicSearchModel()).Data);
+
+            if (entityType == SliderEntityTypeEnum.News)
+                return Json(_newsModelFactory.PrepareNewsItemListModel(new NewsItemSearchModel()).Data);
+
+            return Json("");
         }
 
         #endregion

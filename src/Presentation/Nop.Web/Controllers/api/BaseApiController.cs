@@ -1,12 +1,13 @@
-﻿using System;
-using Nop.Core.Domain.Customers;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Nop.Web.Controllers.api.Filters;
-using Nop.Web.Framework.Controllers;
 
 namespace Nop.Web.Controllers.api
 {
     [AuthorizeCustomer]
-    public class BaseApiController : BaseController
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public class BaseApiController : Controller
     {
 
     }

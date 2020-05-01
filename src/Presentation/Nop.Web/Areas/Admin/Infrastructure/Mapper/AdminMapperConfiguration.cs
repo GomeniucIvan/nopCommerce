@@ -1122,6 +1122,7 @@ namespace Nop.Web.Areas.Admin.Infrastructure.Mapper
                 .ForMember(model => model.CreatedOn, options => options.Ignore())
                 .ForMember(model => model.LanguageName, options => options.Ignore())
                 .ForMember(model => model.NotApprovedComments, options => options.Ignore())
+                .ForMember(model => model.Name, options => options.Ignore())
                 .ForMember(model => model.SeName, options => options.Ignore());
             CreateMap<NewsItemModel, NewsItem>()
                 .ForMember(entity => entity.CreatedOnUtc, options => options.Ignore());
@@ -1526,6 +1527,7 @@ namespace Nop.Web.Areas.Admin.Infrastructure.Mapper
                 .ForMember(model => model.AvailableTopicTemplates, options => options.Ignore())
                 .ForMember(model => model.SeName, options => options.Ignore())
                 .ForMember(model => model.TopicName, options => options.Ignore())
+                .ForMember(model => model.Name, options => options.Ignore())
                 .ForMember(model => model.Url, options => options.Ignore());
             CreateMap<TopicModel, Topic>();
 

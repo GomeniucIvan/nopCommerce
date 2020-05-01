@@ -2,14 +2,14 @@
 @model SliderSearchModel
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.GallerySliders").Text;
+    ViewBag.PageTitle = T("Admin.ContentManagement.Sliders").Text;
     //active menu item (system name)
-    Html.SetActiveMenuItemSystemName("GallerySlider");
+    Html.SetActiveMenuItemSystemName("Sliders");
 }
 
 <div class="content-header clearfix">
     <h1 class="pull-left">
-        @T("Admin.GallerySliders")
+        @T("Admin.ContentManagement.Sliders")
     </h1>
     <div class="pull-right">
         <a asp-action="Create" class="btn bg-blue">
@@ -34,7 +34,7 @@
                         {
                             new ColumnProperty($"{nameof(SliderModel.Name)}.{nameof(SliderModel.Name)}")
                             {
-                                Title = T("Admin.GallerySlider.Fields.Name").Text,
+                                Title = T("Admin.ContentManagement.Fields.Name").Text,
                                 Width = "200"
                             },
                             new ColumnProperty(nameof(SliderModel.Id))

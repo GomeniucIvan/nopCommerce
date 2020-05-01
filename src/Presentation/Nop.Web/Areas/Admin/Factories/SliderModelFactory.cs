@@ -68,7 +68,7 @@ namespace Nop.Web.Areas.Admin.Factories
 
                     //fill in additional values (not existing in the entity)
                     sliderModel.PictureThumbnailUrl = _pictureService.GetPictureUrl(slider.Id, 75);
-                    sliderModel.EntityTypeName = _localizationService.GetLocalizedEnum(slider.EntityType);
+                    sliderModel.EntityTypeName = _localizationService.GetLocalizedEnum((SliderEntityTypeEnum)slider.EntityTypeId);
                     sliderModel.Name = _localizationService.GetLocalized(slider, v =>v.Name);
 
                     return sliderModel;

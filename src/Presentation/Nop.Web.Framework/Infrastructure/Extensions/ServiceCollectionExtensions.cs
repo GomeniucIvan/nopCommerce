@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -70,17 +71,23 @@ namespace Nop.Web.Framework.Infrastructure.Extensions
             services.AddHttpContextAccessor();
 
             //add jwt auth
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-            services.AddAuthentication().AddJwtBearer(config =>
+            var stringBytes = Encoding.UTF8.GetBytes(NopAuthenticationDefaults.JwtSecurityTokenKey);
+            var key = new SymmetricSecurityKey(stringBytes);
+            services.AddAuthentication(x =>
             {
-                var stringBytes = Encoding.UTF8.GetBytes(NopAuthenticationDefaults.JwtSecurityTokenKey);
-                var key = new SymmetricSecurityKey(stringBytes);
-
-                config.TokenValidationParameters = new TokenValidationParameters()
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
                 {
+                    ValidateIssuerSigningKey = true,
                     IssuerSigningKey = key,
-                    ValidIssuer = NopAuthenticationDefaults.AuthenticationScheme,
-                    ValidAudience = NopAuthenticationDefaults.AuthenticationScheme
+                    ValidateIssuer = false,
+                    ValidateAudience = false
                 };
             });
 

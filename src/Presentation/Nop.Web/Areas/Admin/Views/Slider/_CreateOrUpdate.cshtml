@@ -5,6 +5,44 @@
 <div asp-validation-summary="All"></div>
 <input asp-for="Id" type="hidden" />
 
+<script>
+    var firstLoad = true;
+    $(function() {
+        reloadItemsByEntityType();
+
+        $("#@Html.IdFor(v => v.EntityTypeId)").on("change",
+            function() {
+                reloadItemsByEntityType();
+            });
+    });
+
+    function reloadItemsByEntityType() {
+        var selectedEntity = $("#@Html.IdFor(v => v.EntityTypeId)").val();
+        var entityItems = $("#@Html.IdFor(model => model.EntityId)");
+        $.ajax({
+            cache: false,
+            type: "GET",
+            url: "@(Url.Action("GetItemsByEntityType", "Slider"))",
+            data: {
+                "entityType": selectedEntity
+            },
+            success: function (data, textStatus, jqXHR) {
+                entityItems.html('');
+                $.each(data, function (id, option) {
+                    entityItems.append($('<option></option>').val(option.Id).html(option.Name));
+                });
+                if (firstLoad) {
+                    $("#@Html.IdFor(model => model.EntityId)").val('@Model.EntityId');
+                    firstLoad = false;
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            }
+        });
+    };
+</script>
+
 <div class="content">
     <div class="form-horizontal">
         <div class="panel-body">
@@ -30,7 +68,7 @@
                     </div>
                     <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
                 </div>
-                ,
+    ,
                 @<div>
                     <div class="form-group">
                         <div class="col-md-3">
@@ -64,15 +102,15 @@
 
             <div class="form-group">
                 <div class="col-md-3">
-                    <nop-label asp-for="EntityType" />
+                    <nop-label asp-for="EntityTypeId" />
                 </div>
-                <div class="col-md-9">
-                    <div class="col-md-4">
-                        <nop-select asp-for="EntityType" asp-items="@(((SliderEntityTypeEnum)Model.EntityType).ToSelectList())" />
-                        <span asp-validation-for="EntityType"></span>
+                <div class="col-md-9 row">
+                    <div class="col-md-2">
+                        <nop-select asp-for="EntityTypeId" asp-items="@(((SliderEntityTypeEnum)Model.EntityTypeId).ToSelectList())" />
+                        <span asp-validation-for="EntityTypeId"></span>
                     </div>
-                    <div class="col-md-8">
-                        <nop-editor asp-for="EntityId" />
+                    <div class="col-md-4">
+                        <nop-select asp-for="EntityId"/>
                         <span asp-validation-for="EntityId"></span>
                     </div>
                 </div>

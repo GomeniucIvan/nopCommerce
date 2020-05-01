@@ -1,17 +1,17 @@
 @model SliderModel
 @{
     //page title
-    ViewBag.PageTitle = T("Admin.Slider.AddNew").Text;
+    ViewBag.PageTitle = T("Admin.ContentManagement.Sliders.AddNew").Text;
     //active menu item (system name)
     Html.SetActiveMenuItemSystemName("Sliders");
 }
 <form asp-action="Create" method="post" id="slider-form">
     <div class="content-header clearfix">
         <h1 class="pull-left">
-            @T("Admin.Slider.AddNew")
+            @T("Admin.ContentManagement.Sliders.AddNew")
             <small>
                 <i class="fa fa-arrow-circle-left"></i>
-                <a asp-action="List">@T("Admin.Slider.BackToList")</a>
+                <a asp-action="List">@T("Admin.ContentManagement.Sliders.BackToList")</a>
             </small>
         </h1>
         <div class="pull-right">

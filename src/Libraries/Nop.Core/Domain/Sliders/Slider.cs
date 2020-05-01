@@ -1,4 +1,5 @@
-﻿using Nop.Core.Domain.Localization;
+﻿using Nop.Core.Domain.Catalog;
+using Nop.Core.Domain.Localization;
 
 namespace Nop.Core.Domain.Sliders
 {
@@ -30,9 +31,9 @@ namespace Nop.Core.Domain.Sliders
         public bool Published { get; set; }
 
         /// <summary>
-        /// Gets or sets a entity type
+        /// Gets or sets a entity identifier
         /// </summary>
-        public SliderEntityTypeEnum EntityType { get; set; }
+        public int EntityTypeId { get; set; }
 
         /// <summary>
         /// Gets or sets a entity identifier

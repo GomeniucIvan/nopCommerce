@@ -50,7 +50,7 @@ namespace Nop.Web.Factories
 
         private string GenerateRedirectUrl(Slider slider)
         {
-            switch (slider.EntityType)
+            switch ((SliderEntityTypeEnum)slider.EntityTypeId)
             {
                 case SliderEntityTypeEnum.None:
                     return "";
@@ -90,7 +90,7 @@ namespace Nop.Web.Factories
                 Description = _localizationService.GetLocalized(v, x => x.Description),
                 PictureUrl = _pictureService.GetPictureUrl(v.PictureId),
                 EntityId = v.EntityId,
-                EntityType = v.EntityType,
+                EntityType = (SliderEntityTypeEnum)v.EntityTypeId,
                 RedirectUrl = GenerateRedirectUrl(v)
             }).ToList();
         }

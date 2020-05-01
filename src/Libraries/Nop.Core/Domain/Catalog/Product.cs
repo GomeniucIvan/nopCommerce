@@ -3,6 +3,7 @@ using Nop.Core.Domain.Discounts;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Security;
 using Nop.Core.Domain.Seo;
+using Nop.Core.Domain.Sliders;
 using Nop.Core.Domain.Stores;
 
 namespace Nop.Core.Domain.Catalog

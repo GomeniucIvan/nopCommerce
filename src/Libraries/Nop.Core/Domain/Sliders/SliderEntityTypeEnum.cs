@@ -2,10 +2,10 @@
 {
     public enum SliderEntityTypeEnum
     {
-        None,
-        Product,
-        Category,
-        Topic,
-        News
+        None = 0,
+        Product = 1,
+        Category = 2,
+        Topic = 3,
+        News = 4
     }
 }

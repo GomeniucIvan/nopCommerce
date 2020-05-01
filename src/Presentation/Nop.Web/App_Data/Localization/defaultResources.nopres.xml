@@ -18366,6 +18366,62 @@
   <LocaleResource Name="Wishlist.YourWishlistURL">
     <Value>Your wishlist URL for sharing</Value>
   </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders">
+        <Value>Sliders</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.fields.name">
+        <Value>Name</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.fields.name.hint">
+        <Value>Displayed name</Value>
+    </LocaleResource>
+  <LocaleResource Name="admin.contentmanagement.sliders.addnew">
+    <Value>Add new slider</Value>
+  </LocaleResource>
+  <LocaleResource Name="admin.contentmanagement.sliders.backtolist">
+      <Value>back to slider list</Value>
+  </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders.fields.description">
+        <Value>Description</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders.fields.description.hint">
+        <Value>Description</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders.fields.picture">
+        <Value>Picture</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders.fields.picture.hint">
+        <Value>Slider picture</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders.fields.entity">
+        <Value>Entity</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders.fields.entity.hint">
+        <Value>Entity represent product/topic etc. to redirect on click</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders.fields.published">
+        <Value>Published</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders.fields.published.hint">
+        <Value>Published</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders.fields.displayorder">
+        <Value>Display order</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders.fields.displayorder.hint">
+        <Value>Display order</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders.updated">
+        <Value>Slider updated</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders.created">
+        <Value>Slider created</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders.deleted">
+        <Value>Slider deleted</Value>
+    </LocaleResource>
+
+
 
   <LocaleResource Name="Mobile.Products.Added">
     <Value>Product added successfully</Value>

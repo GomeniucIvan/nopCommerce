@@ -82,6 +82,8 @@ namespace Nop.Web.Areas.Admin.Models.News
         [NopResourceDisplayName("Admin.ContentManagement.News.NewsItems.Fields.CreatedOn")]
         public DateTime CreatedOn { get; set; }
 
+        public string Name => Title;
+
         #endregion
     }
 }

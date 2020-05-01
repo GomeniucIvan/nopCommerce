@@ -19,33 +19,33 @@ namespace Nop.Web.Areas.Admin.Models.Sliders
 
         #region Properties
 
-        [NopResourceDisplayName("Admin.Slider.Fields.Name")]
+        [NopResourceDisplayName("Admin.ContentManagement.Sliders.Fields.Name")]
         public string Name { get; set; }
 
-        [NopResourceDisplayName("Admin.Slider.Fields.Description")]
+        [NopResourceDisplayName("Admin.ContentManagement.Sliders.Fields.Description")]
         public string Description { get; set; }
 
         [UIHint("Picture")]
-        [NopResourceDisplayName("Admin.Slider.Fields.Picture")]
+        [NopResourceDisplayName("Admin.ContentManagement.Sliders.Fields.Picture")]
         public int PictureId { get; set; }
 
-        [NopResourceDisplayName("Admin.Slider.Fields.Published")]
+        [NopResourceDisplayName("Admin.ContentManagement.Sliders.Fields.Published")]
         public bool Published { get; set; }
 
-        [NopResourceDisplayName("Admin.Slider.Fields.DisplayOrder")]
+        [NopResourceDisplayName("Admin.ContentManagement.Sliders.Fields.DisplayOrder")]
         public int DisplayOrder { get; set; }
 
-        [NopResourceDisplayName("Admin.Slider.Fields.Entity")]
-        public SliderEntityTypeEnum EntityType { get; set; }
+        [NopResourceDisplayName("Admin.ContentManagement.Sliders.Fields.Entity")]
+        public SliderEntityTypeEnum EntityTypeId { get; set; }
 
         public int? EntityId { get; set; }
 
         public IList<SliderLocalizedModel> Locales { get; set; }
 
-        [NopResourceDisplayName("Admin.Slider.Fields.PictureThumbnailUrl")]
+        [NopResourceDisplayName("Admin.ContentManagement.Sliders.Fields.PictureThumbnailUrl")]
         public string PictureThumbnailUrl { get; set; }
 
-        [NopResourceDisplayName("Admin.Slider.Fields.EntityTypeName")]
+        [NopResourceDisplayName("Admin.ContentManagement.Sliders.Fields.EntityTypeName")]
         public string EntityTypeName { get; set; }
 
         #endregion
@@ -55,10 +55,10 @@ namespace Nop.Web.Areas.Admin.Models.Sliders
     {
         public int LanguageId { get; set; }
 
-        [NopResourceDisplayName("Admin.Slider.Fields.Name")]
+        [NopResourceDisplayName("Admin.ContentManagement.Sliders.Fields.Name")]
         public string Name { get; set; }
 
-        [NopResourceDisplayName("Admin.Slider.Fields.Description")]
+        [NopResourceDisplayName("Admin.ContentManagement.Sliders.Fields.Description")]
         public string Description { get; set; }
     }
 }
