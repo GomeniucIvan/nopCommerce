@@ -2,8 +2,6 @@
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Caching;
@@ -18,12 +16,11 @@ using Nop.Web.Factories;
 using Nop.Web.Infrastructure.Cache;
 using Nop.Web.Models.Catalog;
 using Nop.Web.Models.News;
+using Nop.Web.Models.Sliders;
 
 namespace Nop.Web.Controllers.api
 {
     [Route("api/[controller]")]
-    [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class HomeController : BaseApiController
     {
         #region Fields
@@ -40,6 +37,7 @@ namespace Nop.Web.Controllers.api
         private readonly IStoreMappingService _storeMappingService;
         private readonly INewsModelFactory _newsModelFactory;
         private readonly ICacheKeyService _cacheKeyService;
+        private readonly ISliderModelFactory _sliderModelFactory;
 
         #endregion
 
@@ -57,8 +55,8 @@ namespace Nop.Web.Controllers.api
             IAclService aclService,
             IStoreMappingService storeMappingService,
             INewsModelFactory newsModelFactory,
-            ICacheKeyService cacheKeyService
-            )
+            ICacheKeyService cacheKeyService,
+            ISliderModelFactory sliderModelFactory)
         {
             _catalogSettings = catalogSettings;
             _newsSettings = newsSettings;
@@ -72,11 +70,26 @@ namespace Nop.Web.Controllers.api
             _storeMappingService = storeMappingService;
             _newsModelFactory = newsModelFactory;
             _cacheKeyService = cacheKeyService;
+            _sliderModelFactory = sliderModelFactory;
         }
 
         #endregion
 
         #region Methods
+
+        [HttpGet]
+        [Route("sliders")]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(List<SliderModel>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<List<SliderModel>>> GetAllSlidersAsync()
+        {
+            var result = new List<SliderModel>();
+            await Task.Run(() =>
+            {
+                result = _sliderModelFactory.PrepareSliderList(mobile:true);
+            });
+            return result;
+        }
 
         [HttpGet]
         [Route("categories")]
@@ -90,10 +103,10 @@ namespace Nop.Web.Controllers.api
         }
 
         [HttpGet]
-        [Route("products")]
+        [Route("featureproducts")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(List<ProductOverviewModel>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<List<ProductOverviewModel>>> HomePageProductsAsync()
+        public async Task<ActionResult<List<ProductOverviewModel>>> HomePageFeatureProductsAsync()
         {
             var result = new List<ProductOverviewModel>();
             await Task.Run(() =>
@@ -109,6 +122,14 @@ namespace Nop.Web.Controllers.api
                 products = products.Where(p => p.VisibleIndividually).ToList();
 
                 result = _productModelFactory.PrepareProductOverviewModels(products, true, true, null).ToList();
+
+                //todo remove
+                foreach (var product in result)
+                {
+                    product.DefaultPictureModel.ImageUrl = product.DefaultPictureModel.ImageUrl.Replace("localhost","192.168.0.104");
+                    var x = 1;
+                }
+
                 return result;
             });
             return result;

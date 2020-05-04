@@ -5,8 +5,9 @@ using Nop.Web.Controllers.api.Filters;
 
 namespace Nop.Web.Controllers.api
 {
-    [AuthorizeCustomer]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [AuthorizeCustomer]
+    [ApiController]
     public class BaseApiController : Controller
     {
 

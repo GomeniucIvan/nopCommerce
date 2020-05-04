@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Core.Domain.Catalog;
+using Nop.Core.Domain.Cms;
 using Nop.Core.Domain.Discounts;
 using Nop.Services.Catalog;
+using Nop.Services.Configuration;
 using Nop.Services.Discounts;
 using Nop.Services.Localization;
 using Nop.Services.Seo;
@@ -34,6 +36,7 @@ namespace Nop.Web.Areas.Admin.Factories
         private readonly IProductService _productService;
         private readonly IStoreMappingSupportedModelFactory _storeMappingSupportedModelFactory;
         private readonly IUrlRecordService _urlRecordService;
+        private readonly ISettingService _settingService;
 
         #endregion
 
@@ -49,7 +52,8 @@ namespace Nop.Web.Areas.Admin.Factories
             ILocalizedModelFactory localizedModelFactory,
             IProductService productService,
             IStoreMappingSupportedModelFactory storeMappingSupportedModelFactory,
-            IUrlRecordService urlRecordService)
+            IUrlRecordService urlRecordService,
+            ISettingService settingService)
         {
             _catalogSettings = catalogSettings;
             _aclSupportedModelFactory = aclSupportedModelFactory;
@@ -62,6 +66,7 @@ namespace Nop.Web.Areas.Admin.Factories
             _productService = productService;
             _storeMappingSupportedModelFactory = storeMappingSupportedModelFactory;
             _urlRecordService = urlRecordService;
+            _settingService = settingService;
         }
 
         #endregion
@@ -232,6 +237,10 @@ namespace Nop.Web.Areas.Admin.Factories
 
             //prepare model stores
             _storeMappingSupportedModelFactory.PrepareModelStores(model, category, excludeProperties);
+
+            //mobile settings
+            var mobileSettings = _settingService.LoadSetting<MobileSettings>();
+            model.ShowMobileSettings = mobileSettings.ActivateMobileSettings;
 
             return model;
         }

@@ -35,6 +35,7 @@ namespace Nop.Web.Models.Catalog
         public IList<ProductSpecificationModel> SpecificationAttributeModels { get; set; }
         //price
         public ProductReviewOverviewModel ReviewOverviewModel { get; set; }
+        public string PictureUrl => DefaultPictureModel.ImageUrl;
 
 		#region Nested Classes
 
@@ -63,6 +64,11 @@ namespace Nop.Web.Models.Catalog
             /// A value indicating whether we should display tax/shipping info (used in Germany)
             /// </summary>
             public bool DisplayTaxShippingInfo { get; set; }
+
+            public decimal PriceDecimal { get; set; }
+            public decimal OldPriceDecimal { get; set; }
+            public bool OnSale => PriceDecimal > 0 && OldPriceDecimal > 0 && (OldPriceDecimal > PriceDecimal);
+            public string DiscountPercentage => OnSale ? $"%{(int) ((OldPriceDecimal - PriceDecimal) / OldPriceDecimal * 100)}" : "";
         }
 
 		#endregion

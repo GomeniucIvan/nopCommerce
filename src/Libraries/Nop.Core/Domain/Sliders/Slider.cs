@@ -39,5 +39,10 @@ namespace Nop.Core.Domain.Sliders
         /// Gets or sets a entity identifier
         /// </summary>
         public int? EntityId { get; set; }
+
+        /// <summary>
+        /// Gets or sets mobile picture
+        /// </summary>
+        public int MobilePictureId { get; set; }
     }
 }

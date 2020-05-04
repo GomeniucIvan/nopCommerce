@@ -6834,10 +6834,12 @@ namespace Nop.Services.Installation
             settingService.SaveSetting(new MobileSettings
             {
                 SliderDelay = 3000,
+                AllowCustomersToUseDarkTheme = false,
                 DarkThemeAsDefault = false,
                 BaseColor = "#4ab2f1",
                 ShowPresentationOnFirstLoad = true,
-                CurrentLanguageVersion = 1
+                CurrentLanguageVersion = 1,
+                ActivateMobileSettings = false
             });
         }
 

@@ -318,22 +318,6 @@ namespace Nop.Web.Areas.Admin.Factories
             //prepare available themes
             PrepareStoreThemeModels(model.AvailableStoreThemes);
 
-            if (storeId <= 0)
-                return model;
-
-            //fill in overridden values
-            model.StoreClosed_OverrideForStore = _settingService.SettingExists(storeInformationSettings, x => x.StoreClosed, storeId);
-            model.DefaultStoreTheme_OverrideForStore = _settingService.SettingExists(storeInformationSettings, x => x.DefaultStoreTheme, storeId);
-            model.AllowCustomerToSelectTheme_OverrideForStore = _settingService.SettingExists(storeInformationSettings, x => x.AllowCustomerToSelectTheme, storeId);
-            model.LogoPictureId_OverrideForStore = _settingService.SettingExists(storeInformationSettings, x => x.LogoPictureId, storeId);
-            model.DisplayEuCookieLawWarning_OverrideForStore = _settingService.SettingExists(storeInformationSettings, x => x.DisplayEuCookieLawWarning, storeId);
-            model.FacebookLink_OverrideForStore = _settingService.SettingExists(storeInformationSettings, x => x.FacebookLink, storeId);
-            model.TwitterLink_OverrideForStore = _settingService.SettingExists(storeInformationSettings, x => x.TwitterLink, storeId);
-            model.YoutubeLink_OverrideForStore = _settingService.SettingExists(storeInformationSettings, x => x.YoutubeLink, storeId);
-            model.SubjectFieldOnContactUsForm_OverrideForStore = _settingService.SettingExists(commonSettings, x => x.SubjectFieldOnContactUsForm, storeId);
-            model.UseSystemEmailForContactUsForm_OverrideForStore = _settingService.SettingExists(commonSettings, x => x.UseSystemEmailForContactUsForm, storeId);
-            model.PopupForTermsOfServiceLinks_OverrideForStore = _settingService.SettingExists(commonSettings, x => x.PopupForTermsOfServiceLinks, storeId);
-
             return model;
         }
 
@@ -361,20 +345,6 @@ namespace Nop.Web.Areas.Admin.Factories
                 SitemapIncludeTopics = sitemapSettings.SitemapIncludeTopics
             };
 
-            if (storeId <= 0)
-                return model;
-
-            //fill in overridden values
-            model.SitemapEnabled_OverrideForStore = _settingService.SettingExists(sitemapSettings, x => x.SitemapEnabled, storeId);
-            model.SitemapPageSize_OverrideForStore = _settingService.SettingExists(sitemapSettings, x => x.SitemapPageSize, storeId);
-            model.SitemapIncludeCategories_OverrideForStore = _settingService.SettingExists(sitemapSettings, x => x.SitemapIncludeCategories, storeId);
-            model.SitemapIncludeManufacturers_OverrideForStore = _settingService.SettingExists(sitemapSettings, x => x.SitemapIncludeManufacturers, storeId);
-            model.SitemapIncludeProducts_OverrideForStore = _settingService.SettingExists(sitemapSettings, x => x.SitemapIncludeProducts, storeId);
-            model.SitemapIncludeProductTags_OverrideForStore = _settingService.SettingExists(sitemapSettings, x => x.SitemapIncludeProductTags, storeId);
-            model.SitemapIncludeBlogPosts_OverrideForStore = _settingService.SettingExists(sitemapSettings, x => x.SitemapIncludeBlogPosts, storeId);
-            model.SitemapIncludeNews_OverrideForStore = _settingService.SettingExists(sitemapSettings, x => x.SitemapIncludeNews, storeId);
-            model.SitemapIncludeTopics_OverrideForStore = _settingService.SettingExists(sitemapSettings, x => x.SitemapIncludeTopics, storeId);
-
             return model;
         }
 
@@ -396,15 +366,6 @@ namespace Nop.Web.Areas.Admin.Factories
                 EnableCssBundling = minificationSettings.EnableCssBundling,
                 UseResponseCompression = minificationSettings.UseResponseCompression
             };
-
-            if (storeId <= 0)
-                return model;
-
-            //fill in overridden values
-            model.EnableHtmlMinification_OverrideForStore = _settingService.SettingExists(minificationSettings, x => x.EnableHtmlMinification, storeId);
-            model.EnableJsBundling_OverrideForStore = _settingService.SettingExists(minificationSettings, x => x.EnableJsBundling, storeId);
-            model.EnableCssBundling_OverrideForStore = _settingService.SettingExists(minificationSettings, x => x.EnableCssBundling, storeId);
-            model.UseResponseCompression_OverrideForStore = _settingService.SettingExists(minificationSettings, x => x.UseResponseCompression, storeId);
 
             return model;
         }
@@ -439,24 +400,6 @@ namespace Nop.Web.Areas.Admin.Factories
                 CustomHeadTags = seoSettings.CustomHeadTags,
                 MicrodataEnabled = seoSettings.MicrodataEnabled
             };
-
-            if (storeId <= 0)
-                return model;
-
-            //fill in overridden values
-            model.PageTitleSeparator_OverrideForStore = _settingService.SettingExists(seoSettings, x => x.PageTitleSeparator, storeId);
-            model.PageTitleSeoAdjustment_OverrideForStore = _settingService.SettingExists(seoSettings, x => x.PageTitleSeoAdjustment, storeId);
-            model.DefaultTitle_OverrideForStore = _settingService.SettingExists(seoSettings, x => x.DefaultTitle, storeId);
-            model.DefaultMetaKeywords_OverrideForStore = _settingService.SettingExists(seoSettings, x => x.DefaultMetaKeywords, storeId);
-            model.DefaultMetaDescription_OverrideForStore = _settingService.SettingExists(seoSettings, x => x.DefaultMetaDescription, storeId);
-            model.GenerateProductMetaDescription_OverrideForStore = _settingService.SettingExists(seoSettings, x => x.GenerateProductMetaDescription, storeId);
-            model.ConvertNonWesternChars_OverrideForStore = _settingService.SettingExists(seoSettings, x => x.ConvertNonWesternChars, storeId);
-            model.CanonicalUrlsEnabled_OverrideForStore = _settingService.SettingExists(seoSettings, x => x.CanonicalUrlsEnabled, storeId);
-            model.WwwRequirement_OverrideForStore = _settingService.SettingExists(seoSettings, x => x.WwwRequirement, storeId);
-            model.TwitterMetaTags_OverrideForStore = _settingService.SettingExists(seoSettings, x => x.TwitterMetaTags, storeId);
-            model.OpenGraphMetaTags_OverrideForStore = _settingService.SettingExists(seoSettings, x => x.OpenGraphMetaTags, storeId);
-            model.CustomHeadTags_OverrideForStore = _settingService.SettingExists(seoSettings, x => x.CustomHeadTags, storeId);
-            model.MicrodataEnabled_OverrideForStore = _settingService.SettingExists(seoSettings, x => x.MicrodataEnabled, storeId);
 
             return model;
         }
@@ -500,26 +443,6 @@ namespace Nop.Web.Areas.Admin.Factories
 
             model.CaptchaTypeValues = captchaSettings.CaptchaType.ToSelectList();
 
-            if (storeId <= 0)
-                return model;
-
-            model.Enabled_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.Enabled, storeId);
-            model.ShowOnLoginPage_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.ShowOnLoginPage, storeId);
-            model.ShowOnRegistrationPage_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.ShowOnRegistrationPage, storeId);
-            model.ShowOnContactUsPage_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.ShowOnContactUsPage, storeId);
-            model.ShowOnEmailWishlistToFriendPage_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.ShowOnEmailWishlistToFriendPage, storeId);
-            model.ShowOnEmailProductToFriendPage_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.ShowOnEmailProductToFriendPage, storeId);
-            model.ShowOnBlogCommentPage_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.ShowOnBlogCommentPage, storeId);
-            model.ShowOnNewsCommentPage_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.ShowOnNewsCommentPage, storeId);
-            model.ShowOnProductReviewPage_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.ShowOnProductReviewPage, storeId);
-            model.ShowOnApplyVendorPage_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.ShowOnApplyVendorPage, storeId);
-            model.ShowOnForgotPasswordPage_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.ShowOnForgotPasswordPage, storeId);
-            model.ShowOnForum_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.ShowOnForum, storeId);
-            model.ReCaptchaPublicKey_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.ReCaptchaPublicKey, storeId);
-            model.ReCaptchaPrivateKey_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.ReCaptchaPrivateKey, storeId);
-            model.CaptchaType_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.CaptchaType, storeId);
-            model.ReCaptchaV3ScoreThreshold_OverrideForStore = _settingService.SettingExists(captchaSettings, x => x.ReCaptchaV3ScoreThreshold, storeId);
-
             return model;
         }
 
@@ -542,16 +465,6 @@ namespace Nop.Web.Areas.Admin.Factories
                 InvoiceFooterTextColumn1 = pdfSettings.InvoiceFooterTextColumn1,
                 InvoiceFooterTextColumn2 = pdfSettings.InvoiceFooterTextColumn2
             };
-
-            if (storeId <= 0)
-                return model;
-
-            //fill in overridden values
-            model.LetterPageSizeEnabled_OverrideForStore = _settingService.SettingExists(pdfSettings, x => x.LetterPageSizeEnabled, storeId);
-            model.LogoPictureId_OverrideForStore = _settingService.SettingExists(pdfSettings, x => x.LogoPictureId, storeId);
-            model.DisablePdfInvoicesForPendingOrders_OverrideForStore = _settingService.SettingExists(pdfSettings, x => x.DisablePdfInvoicesForPendingOrders, storeId);
-            model.InvoiceFooterTextColumn1_OverrideForStore = _settingService.SettingExists(pdfSettings, x => x.InvoiceFooterTextColumn1, storeId);
-            model.InvoiceFooterTextColumn2_OverrideForStore = _settingService.SettingExists(pdfSettings, x => x.InvoiceFooterTextColumn2, storeId);
 
             return model;
         }
@@ -651,18 +564,6 @@ namespace Nop.Web.Areas.Admin.Factories
                 DisplayContactUsMenuItem = displayDefaultMenuItemSettings.DisplayContactUsMenuItem
             };
 
-            if (storeId <= 0)
-                return model;
-
-            //fill in overridden values
-            model.DisplayHomepageMenuItem_OverrideForStore = _settingService.SettingExists(displayDefaultMenuItemSettings, x => x.DisplayHomepageMenuItem, storeId);
-            model.DisplayNewProductsMenuItem_OverrideForStore = _settingService.SettingExists(displayDefaultMenuItemSettings, x => x.DisplayNewProductsMenuItem, storeId);
-            model.DisplayProductSearchMenuItem_OverrideForStore = _settingService.SettingExists(displayDefaultMenuItemSettings, x => x.DisplayProductSearchMenuItem, storeId);
-            model.DisplayCustomerInfoMenuItem_OverrideForStore = _settingService.SettingExists(displayDefaultMenuItemSettings, x => x.DisplayCustomerInfoMenuItem, storeId);
-            model.DisplayBlogMenuItem_OverrideForStore = _settingService.SettingExists(displayDefaultMenuItemSettings, x => x.DisplayBlogMenuItem, storeId);
-            model.DisplayForumsMenuItem_OverrideForStore = _settingService.SettingExists(displayDefaultMenuItemSettings, x => x.DisplayForumsMenuItem, storeId);
-            model.DisplayContactUsMenuItem_OverrideForStore = _settingService.SettingExists(displayDefaultMenuItemSettings, x => x.DisplayContactUsMenuItem, storeId);
-
             return model;
         }
 
@@ -695,26 +596,6 @@ namespace Nop.Web.Areas.Admin.Factories
                 DisplayWishlistFooterItem = displayDefaultFooterItemSettings.DisplayWishlistFooterItem,
                 DisplayApplyVendorAccountFooterItem = displayDefaultFooterItemSettings.DisplayApplyVendorAccountFooterItem
             };
-
-            if (storeId <= 0)
-                return model;
-
-            //fill in overridden values
-            model.DisplaySitemapFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplaySitemapFooterItem, storeId);
-            model.DisplayContactUsFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplayContactUsFooterItem, storeId);
-            model.DisplayProductSearchFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplayProductSearchFooterItem, storeId);
-            model.DisplayNewsFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplayNewsFooterItem, storeId);
-            model.DisplayBlogFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplayBlogFooterItem, storeId);
-            model.DisplayForumsFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplayForumsFooterItem, storeId);
-            model.DisplayRecentlyViewedProductsFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplayRecentlyViewedProductsFooterItem, storeId);
-            model.DisplayCompareProductsFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplayCompareProductsFooterItem, storeId);
-            model.DisplayNewProductsFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplayNewProductsFooterItem, storeId);
-            model.DisplayCustomerInfoFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplayCustomerInfoFooterItem, storeId);
-            model.DisplayCustomerOrdersFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplayCustomerOrdersFooterItem, storeId);
-            model.DisplayCustomerAddressesFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplayCustomerAddressesFooterItem, storeId);
-            model.DisplayShoppingCartFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplayShoppingCartFooterItem, storeId);
-            model.DisplayWishlistFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplayWishlistFooterItem, storeId);
-            model.DisplayApplyVendorAccountFooterItem_OverrideForStore = _settingService.SettingExists(displayDefaultFooterItemSettings, x => x.DisplayApplyVendorAccountFooterItem, storeId);
 
             return model;
         }

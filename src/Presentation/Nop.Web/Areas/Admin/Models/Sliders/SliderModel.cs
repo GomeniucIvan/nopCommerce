@@ -48,6 +48,10 @@ namespace Nop.Web.Areas.Admin.Models.Sliders
         [NopResourceDisplayName("Admin.ContentManagement.Sliders.Fields.EntityTypeName")]
         public string EntityTypeName { get; set; }
 
+        [UIHint("Picture")]
+        [NopResourceDisplayName("Admin.ContentManagement.Sliders.Fields.MobilePictureId")]
+        public int MobilePictureId { get; set; }
+
         #endregion
     }
 
@@ -60,5 +64,9 @@ namespace Nop.Web.Areas.Admin.Models.Sliders
 
         [NopResourceDisplayName("Admin.ContentManagement.Sliders.Fields.Description")]
         public string Description { get; set; }
+
+        [UIHint("Picture")]
+        [NopResourceDisplayName("Admin.ContentManagement.Sliders.Fields.MobilePictureId")]
+        public int MobilePictureId { get; set; }
     }
 }

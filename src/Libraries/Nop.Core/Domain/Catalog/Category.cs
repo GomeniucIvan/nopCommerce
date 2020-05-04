@@ -116,5 +116,10 @@ namespace Nop.Core.Domain.Catalog
         /// Gets or sets the date and time of instance update
         /// </summary>
         public DateTime UpdatedOnUtc { get; set; }
+
+        /// <summary>
+        /// Gets or sets the icon identifier
+        /// </summary>
+        public int IconId { get; set; }
     }
 }

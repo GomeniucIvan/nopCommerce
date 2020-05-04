@@ -324,6 +324,8 @@ namespace Nop.Web.Factories
                         if (strikeThroughPrice > decimal.Zero)
                             priceModel.OldPrice = _priceFormatter.FormatPrice(strikeThroughPrice);
 
+                        priceModel.PriceDecimal = finalPriceWithDiscount;
+                        priceModel.OldPriceDecimal = strikeThroughPrice;
                         priceModel.Price = _priceFormatter.FormatPrice(finalPriceWithDiscount);
                         priceModel.PriceValue = finalPriceWithDiscount;
                     }

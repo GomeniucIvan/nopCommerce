@@ -80,19 +80,32 @@ namespace Nop.Web.Factories
         /// Prepare slider list
         /// </summary>
         /// <returns>Slider list</returns>
-        public List<SliderModel> PrepareSliderList()
+        public List<SliderModel> PrepareSliderList(bool mobile = false)
         {
             var sliders = _sliderService.GetSliders();
 
-            return sliders.Select(v => new SliderModel()
+            if (mobile)
             {
-                Name = _localizationService.GetLocalized(v, x => x.Name),
-                Description = _localizationService.GetLocalized(v, x => x.Description),
-                PictureUrl = _pictureService.GetPictureUrl(v.PictureId),
-                EntityId = v.EntityId,
-                EntityType = (SliderEntityTypeEnum)v.EntityTypeId,
-                RedirectUrl = GenerateRedirectUrl(v)
-            }).ToList();
+                return sliders.Select(v => new SliderModel()
+                {
+                    Name = _localizationService.GetLocalized(v, x => x.Name),
+                    PictureUrl = _pictureService.GetPictureUrl(_localizationService.GetLocalized(v, x => x.MobilePictureId), 300, true),
+                    EntityId = v.EntityId,
+                    EntityType = (SliderEntityTypeEnum)v.EntityTypeId,
+                }).ToList();
+            }
+            else
+            {
+                return sliders.Select(v => new SliderModel()
+                {
+                    Name = _localizationService.GetLocalized(v, x => x.Name),
+                    Description = _localizationService.GetLocalized(v, x => x.Description),
+                    PictureUrl = _pictureService.GetPictureUrl(v.PictureId),
+                    EntityId = v.EntityId,
+                    EntityType = (SliderEntityTypeEnum)v.EntityTypeId,
+                    RedirectUrl = GenerateRedirectUrl(v)
+                }).ToList();
+            }
         }
 
         #endregion

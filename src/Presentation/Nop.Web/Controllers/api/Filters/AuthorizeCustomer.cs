@@ -1,12 +1,14 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using LinqToDB.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Nop.Core;
 using Nop.Services.Customers;
+using Nop.Services.Localization;
 using NUglify.Helpers;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
@@ -26,6 +28,7 @@ namespace Nop.Web.Controllers.api.Filters
             private readonly IHttpContextAccessor _httpContextAccessor;
             private readonly IWorkContext _workContext;
             private readonly ICustomerService _customerService;
+            private readonly ILanguageService _languageService;
 
             #endregion
 
@@ -34,11 +37,13 @@ namespace Nop.Web.Controllers.api.Filters
             public AuthorizeCustomerFilter(
                 IHttpContextAccessor httpContextAccessor,
                 IWorkContext workContext,
-                ICustomerService customerService)
+                ICustomerService customerService,
+                ILanguageService languageService)
             {
                 _httpContextAccessor = httpContextAccessor;
                 _workContext = workContext;
                 _customerService = customerService;
+                _languageService = languageService;
             }
 
             #endregion
@@ -66,6 +71,17 @@ namespace Nop.Web.Controllers.api.Filters
                 //change to cached customer TODO
                 if (Guid.TryParse(customerGuidString, out var newGuid))
                     _workContext.CurrentCustomer = _customerService.GetCustomerByGuid(newGuid);
+
+                // customer
+                var languageIdString = context.HttpContext.Request.Headers["LanguageId"].ToString();
+                if (!languageIdString.IsNullOrEmpty())
+                {
+                    var validLanguageId = int.TryParse(languageIdString, out var languageId);
+                    if (validLanguageId)
+                    {
+                        _workContext.WorkingLanguage = _languageService.GetLanguageById(languageId);
+                    }
+                }
             }
 
             #endregion

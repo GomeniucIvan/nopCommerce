@@ -9,6 +9,6 @@ namespace Nop.Web.Factories
         /// Prepare slider list
         /// </summary>
         /// <returns>Slider list</returns>
-        List<SliderModel> PrepareSliderList();
+        List<SliderModel> PrepareSliderList(bool mobile = false);
     }
 }

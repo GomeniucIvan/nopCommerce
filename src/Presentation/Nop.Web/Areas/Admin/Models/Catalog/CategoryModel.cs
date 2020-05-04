@@ -119,6 +119,10 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
 
         public CategoryProductSearchModel CategoryProductSearchModel { get; set; }
 
+        [UIHint("Picture")]
+        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.IconId")]
+        public int IconId { get; set; }
+
         #endregion
     }
 

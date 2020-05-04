@@ -6,8 +6,10 @@ using System.Text;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Core.Domain.Catalog;
+using Nop.Core.Domain.Cms;
 using Nop.Core.Domain.Discounts;
 using Nop.Core.Domain.Sliders;
+using Nop.Services.Configuration;
 using Nop.Services.Localization;
 using Nop.Services.Media;
 using Nop.Services.Sliders;
@@ -26,6 +28,7 @@ namespace Nop.Web.Areas.Admin.Factories
         private readonly IPictureService _pictureService;
         private readonly ILocalizationService _localizationService;
         private readonly ILocalizedModelFactory _localizedModelFactory;
+        private readonly ISettingService _settingService;
 
         #endregion
 
@@ -35,12 +38,14 @@ namespace Nop.Web.Areas.Admin.Factories
             ISliderService sliderService,
             IPictureService pictureService,
             ILocalizationService localizationService,
-            ILocalizedModelFactory localizedModelFactory)
+            ILocalizedModelFactory localizedModelFactory,
+            ISettingService settingService)
         {
             _sliderService = sliderService;
             _pictureService = pictureService;
             _localizationService = localizationService;
             _localizedModelFactory = localizedModelFactory;
+            _settingService = settingService;
         }
 
         #endregion
@@ -92,6 +97,7 @@ namespace Nop.Web.Areas.Admin.Factories
                 {
                     locale.Name = _localizationService.GetLocalized(slider, entity => entity.Name, languageId, false, false);
                     locale.Description = _localizationService.GetLocalized(slider, entity => entity.Description, languageId, false, false);
+                    locale.MobilePictureId = _localizationService.GetLocalized(slider, entity => entity.MobilePictureId, languageId, false, false);
                 };
             }
 
@@ -105,6 +111,10 @@ namespace Nop.Web.Areas.Admin.Factories
             //prepare localized models
             if (!excludeProperties)
                 model.Locales = _localizedModelFactory.PrepareLocalizedModels(localizedModelConfiguration);
+
+            //mobile settings
+            var mobileSettings = _settingService.LoadSetting<MobileSettings>();
+            model.ShowMobileSettings = mobileSettings.ActivateMobileSettings;
 
             return model;
         }

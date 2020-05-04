@@ -18420,6 +18420,70 @@
     <LocaleResource Name="admin.contentmanagement.sliders.deleted">
         <Value>Slider deleted</Value>
     </LocaleResource>
+    <LocaleResource Name="Admin.Catalog.Categories.Fields.IconId">
+        <Value>Icon</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Catalog.Categories.Fields.IconId.Hint">
+        <Value>Icon picture for mobile app</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.ContentManagement.Sliders.Fields.MobilePictureId">
+        <Value>Mobile picture</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.ContentManagement.Sliders.Fields.MobilePictureId.Hint">
+        <Value>Mobile picture</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.ActivateMobileSettings">
+        <Value>Active mobile settings</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.ActivateMobileSettings.Hint">
+        <Value>Show mobile settings</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.SliderDelay">
+        <Value>Slider delay</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.SliderDelay.Hint">
+        <Value>Slider delay</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.AllowCustomersToSetDarkTheme">
+        <Value>Allow to set dark theme</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.AllowCustomersToSetDarkTheme.Hint">
+        <Value>Allow customers to set dark theme</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.DarkThemeAsDefault">
+        <Value>Dark theme as default</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.DarkThemeAsDefault.Hint">
+        <Value>Use dark theme as default</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.BaseColor">
+        <Value>Base color</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.BaseColor.Hint">
+        <Value>App base color</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.ShowPresentationOnFirstLoad">
+        <Value>Show presentation</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.ShowPresentationOnFirstLoad.Hint">
+        <Value>Show app presentation on the first load</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.CurrentLanguageVersion">
+        <Value>Last language version</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.CurrentLanguageVersion.Hint">
+        <Value>Last language version is using by mobile app to know when is need to update language resources</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.ContentManagement.Sliders.Fields.Name">
+        <Value>Name</Value>
+    </LocaleResource>
+    <LocaleResource Name="Admin.Configuration.Settings.MobileSettings.CurrentLanguageVersion.Hint">
+        <Value>Slider main text</Value>
+    </LocaleResource>
+    <LocaleResource Name="admin.contentmanagement.sliders.editdetails">
+        <Value>Edit slider</Value>
+    </LocaleResource>
+
 
 
 

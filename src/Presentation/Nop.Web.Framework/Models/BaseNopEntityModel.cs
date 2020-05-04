@@ -10,5 +10,10 @@ namespace Nop.Web.Framework.Models
         /// Gets or sets model identifier
         /// </summary>
         public virtual int Id { get; set; }
+
+        /// <summary>
+        /// Sets if mobile settings are active
+        /// </summary>
+        public bool ShowMobileSettings { get; set; }
     }
 }

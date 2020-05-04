@@ -2,6 +2,7 @@
 using Nop.Core.Domain.Affiliates;
 using Nop.Core.Domain.Blogs;
 using Nop.Core.Domain.Catalog;
+using Nop.Core.Domain.Cms;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Configuration;
 using Nop.Core.Domain.Customers;
@@ -105,6 +106,7 @@ namespace Nop.Web.Areas.Admin.Infrastructure.Mapper
             CreateVendorsMaps();
             CreateWarehouseMaps();
             CreateSliderMaps();
+            CreateMobileMaps();
 
             //add some generic mapping rules
             ForAllMaps((mapConfiguration, map) =>
@@ -1597,6 +1599,12 @@ namespace Nop.Web.Areas.Admin.Infrastructure.Mapper
                 .ForMember(model => model.PictureThumbnailUrl, options => options.Ignore())
                 .ForMember(model => model.Locales, options => options.Ignore());
             CreateMap<SliderModel, Slider>();
+        }
+
+        protected virtual void CreateMobileMaps()
+        {
+            CreateMap<MobileSettings, MobileSettingsModel>();
+            CreateMap<MobileSettingsModel, MobileSettings>();
         }
 
         #endregion

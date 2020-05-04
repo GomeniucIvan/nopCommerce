@@ -38,7 +38,6 @@ namespace Nop.Web.Controllers.api
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CustomerController : BaseApiController
     {
         #region Fields
@@ -461,44 +460,6 @@ namespace Nop.Web.Controllers.api
             return result;
         }
 
-        [HttpGet]
-        [Route("currentcustomer")]
-        [AllowAnonymous]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(ApiCustomer), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<ApiCustomer>> GetCurrentCustomerModelAsync()
-        {
-            var result = new ApiCustomer();
-            await Task.Run(() =>
-            {
-                var customer = _workContext.CurrentCustomer;
-                result = new ApiCustomer()
-                {
-                    Email = customer.Email,
-                    Username = customer.Username,
-                    HasShoppingCartItems = customer.HasShoppingCartItems,
-                    RequireReLogin = customer.RequireReLogin,
-                    CustomerRoles = _customerService.GetCustomerRoles(customer).Select(v => new CustomerRoleModel
-                    {
-                        Name = v.Name,
-                        SystemName = v.SystemName,
-                        Active = v.Active,
-                        IsSystemRole = v.IsSystemRole
-                    }).ToList(),
-                    FirstName = _genericAttributeService.GetAttribute<string>(customer, NopCustomerDefaults.FirstNameAttribute),
-                    LastName = _genericAttributeService.GetAttribute<string>(customer, NopCustomerDefaults.FirstNameAttribute),
-                    ShoppingCartItems = _shoppingCartService.GetShoppingCart(customer).Select(v => new ShoppingCartItemModel()
-                    {
-                        ProductId = v.ProductId,
-                        ShoppingCartTypeId = v.ShoppingCartTypeId,
-                        Quantity = v.Quantity
-                    }).ToList(),
-                    CustomerGuid = customer.CustomerGuid
-                };
-            });
-            return result;
-        }
-
         [HttpPost]
         [Route("logout")]
         public void Logout(ApiCustomer model)
@@ -529,43 +490,6 @@ namespace Nop.Web.Controllers.api
             return result;
         }
 
-        [HttpPost]
-        [Route("token")]
-        [AllowAnonymous]
-        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(ApiGenericModel<string>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<ApiGenericModel<string>>> TokenCreate([FromBody] GenerateTokenFilter model)
-        {
-            var result = new ApiGenericModel<string>();
-            await Task.Run(()=>
-            {
-                if (!model.CustomerGuid.HasValue)
-                    return;
-
-                var claims = new[]
-                {
-                    new Claim(JwtRegisteredClaimNames.Sid, model.CustomerGuid.ToString()),
-                };
-
-                var stringBytes = Encoding.UTF8.GetBytes(NopAuthenticationDefaults.JwtSecurityTokenKey);
-
-                var signingCredentials = new SigningCredentials(
-                    new SymmetricSecurityKey(stringBytes),
-                    SecurityAlgorithms.HmacSha256Signature);
-
-                var token = new JwtSecurityToken(
-                    NopAuthenticationDefaults.AuthenticationScheme,
-                    NopAuthenticationDefaults.AuthenticationScheme,
-                    claims,
-                    notBefore: DateTime.Now,
-                    expires: DateTime.UtcNow.AddYears(1),
-                    signingCredentials
-                );
-
-                result.Data = new JwtSecurityTokenHandler().WriteToken(token);
-            });
-            return result;
-        }
 
         #endregion 
     }
